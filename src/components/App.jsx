@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import ControlsBtn from "./Controls/Controls";
+import Section from "./Section/Section";
+import FeedbackOptions from "./FeedbackOptions/FeedbackOptions";
+import Statistics from "./Statistics/Statistics";
 
 class Feedback extends Component {
   state = {
@@ -16,7 +18,6 @@ class Feedback extends Component {
     });
   };
 
-
   countTotalFeedback = () => {
     return this.state.good + this.state.neutral + this.state.bad;
   };
@@ -25,27 +26,25 @@ class Feedback extends Component {
   };
 
   render() {
-    const total = this.countTotalFeedback();
-    const positiveFeedbackPercentage = this.countPositiveFeedbackPercentage();
-
     return (
-      <div>
-        <h1>Please leave feedback</h1>
-        <ControlsBtn
-          options={Object.keys(this.state)}
-          onLeaveFeedback={this.feedbackHandler}
-        />
-        <div>
-          <h2>Statistics</h2>
-          <ul>
-            <li>Good: {this.state.good}</li>
-            <li>Neutral: {this.state.neutral}</li>
-            <li>Bad: {this.state.bad}</li>
-            <li>Total: {total}</li>
-            <li>Positive feedback: {positiveFeedbackPercentage}%</li>
-          </ul>
-        </div>
-      </div>
+      <>
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            options={Object.keys(this.state)}
+            onLeaveFeedback={this.feedbackHandler}
+          />
+        </Section>
+
+        <Section title="Statistics">
+          <Statistics
+            good={this.state.good}
+            neutral={this.state.neutral}
+            bad={this.state.bad}
+            total={this.countTotalFeedback()}
+            positivePercentage={this.countPositiveFeedbackPercentage()}
+          />
+        </Section>
+      </>
     );
   }
 }
