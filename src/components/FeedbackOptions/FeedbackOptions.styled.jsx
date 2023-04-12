@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 export const ControlsList = styled.ul`
   display: flex;
   gap: 10px;
+  margin: 0;
 `;
 export const ButtonControl = styled.button`
   font-size: 14px;
