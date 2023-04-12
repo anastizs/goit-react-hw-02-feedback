@@ -15,4 +15,5 @@ export const ButtonControl = styled.button`
   border-color: #7c8df3;
   border-radius: 4px;
   outline: none;
+  cursor: pointer;
 `;
